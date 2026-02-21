@@ -135,7 +135,7 @@ title: Home - Detailing Cars Apk
         <div class="video-scroll-container">
             {% for video in site.data.videos %}
             <div class="video-card">
-                <video src="{{ site.baseurl }}{{ video.url }}" controls playsinline muted loop></video>
+                <video src="{{ site.baseurl }}{{ video.url }}" controls autoplay playsinline muted loop></video>
             </div>
             {% endfor %}
         </div>
