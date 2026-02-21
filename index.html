@@ -3,19 +3,125 @@ layout: default
 title: Home - Detailing Cars Apk
 ---
 
+<style>
+    /* ── Hero Grid ── */
+    .hero {
+        position: relative;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 20px;
+        overflow: hidden;
+        border-bottom: 2px solid var(--primary-color);
+    }
+
+    /* The grid of photos lives BEHIND everything */
+    .hero-bg-grid {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        /* On desktop: 5 columns. CSS clamp keeps it responsive */
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-rows: 1fr;
+        gap: 4px;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .hero-bg-grid .bg-cell {
+        overflow: hidden;
+        min-height: 0;
+    }
+
+    .hero-bg-grid .bg-cell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        /* Grey out + slight scale for depth */
+        filter: grayscale(60%) brightness(0.45);
+        transform: scale(1.04);
+        transition: none;
+    }
+
+    /* Dark gradient overlay so text always reads clearly */
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: 
+            radial-gradient(ellipse at center, rgba(15,17,21,0.45) 0%, rgba(15,17,21,0.72) 100%),
+            linear-gradient(to bottom, rgba(15,17,21,0.55) 0%, rgba(15,17,21,0.30) 50%, rgba(15,17,21,0.70) 100%);
+        z-index: 1;
+    }
+
+    /* Content floats above grid + overlay */
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* ── Mobile: 3 columns ── */
+    @media (max-width: 768px) {
+        .hero-bg-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* ── Very small: 2 columns ── */
+    @media (max-width: 420px) {
+        .hero-bg-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
+
 <section class="hero">
-    <div class="container">
+
+    <!-- Background photo grid -->
+    <div class="hero-bg-grid" aria-hidden="true">
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA1.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA2.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA3.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA4.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA5.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA6.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA7.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA8.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA9.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA10.webp" alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA11.webp" alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA12.webp" alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA13.webp" alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA14.webp" alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA15.webp" alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA16.webp" alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA17.webp" alt=""></div>
+        <!-- Repeat a few to always fill the grid fully -->
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA1.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA2.webp"  alt=""></div>
+        <div class="bg-cell"><img src="{{ site.baseurl }}/Pics/DCA3.webp"  alt=""></div>
+    </div>
+
+    <!-- Dark overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Actual hero text -->
+    <div class="container hero-content">
         <h1>Showroom Shine, <span>Every Time</span></h1>
-        <p>Premium auto detailing in Fort Lauderdale by Able. Over 5 years of making cars look better than new.</p>
+        <p>Premium auto detailing in Fort Lauderdale by Abel. Over 5 years of making cars look better than new.</p>
         <a href="#contact" class="btn btn-primary">Get a Quote</a>
     </div>
+
 </section>
 
 <section id="about">
     <div class="container about-grid">
-        <img src="{{ site.baseurl }}/Pics/DCAabout.webp" alt="Able - Owner of Detailing Cars Apk" class="about-img">
+        <img src="{{ site.baseurl }}/Pics/DCAabout.webp" alt="Abel - Owner of Detailing Cars Apk" class="about-img">
         <div class="about-text">
-            <h2>Meet Able</h2>
+            <h2>Meet Abel</h2>
             <p>With over 5 years of professional detailing experience, I treat every car like it's my own. At Detailing Cars Apk, we don't just wash cars; we restore, protect, and perfect them. Whether it's a deep interior extraction or a flawless exterior polish, your vehicle is in expert hands.</p>
             <br>
             <p><strong>Open 7 Days a Week:</strong> 6:00 AM – 9:00 PM</p>
@@ -29,7 +135,8 @@ title: Home - Detailing Cars Apk
         <div class="video-scroll-container">
             {% for video in site.data.videos %}
             <div class="video-card">
-<video src="{{ site.baseurl }}{{ video.url }}" controls playsinline muted loop></video>            </div>
+                <video src="{{ site.baseurl }}{{ video.url }}" controls playsinline muted loop></video>
+            </div>
             {% endfor %}
         </div>
     </div>
@@ -52,7 +159,7 @@ title: Home - Detailing Cars Apk
     <div class="container">
         <h2 class="section-title">What Our Clients Say</h2>
         <div class="reviews-grid">
-            {% for review in site.data.review %}
+            {% for review in site.data.reviews %}
             <div class="review-card">
                 <div class="stars">
                     {% for i in (1..review.stars) %}★{% endfor %}
@@ -89,7 +196,8 @@ title: Home - Detailing Cars Apk
             </div>
 
             <div class="contact-map">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.233520852473!2d-80.20290829999999!3d26.058623599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x223974f8de48c483%3A0x7ef36f8df73018fc!2sdetailing%20cars%20apk%2C%20(detallado%20para%20autos)!5e0!3m2!1sen!2sus!4v1771695323002!5m2!1sen!2sus" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.233520852473!2d-80.20290829999999!3d26.058623599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x223974f8de48c483%3A0x7ef36f8df73018fc!2sdetailing%20cars%20apk%2C%20(detallado%20para%20autos)!5e0!3m2!1sen!2sus!4v1771695323002!5m2!1sen!2sus" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
             
         </div>
     </div>
