@@ -29,8 +29,7 @@ title: Home - Detailing Cars Apk
         <div class="video-scroll-container">
             {% for video in site.data.videos %}
             <div class="video-card">
-                <iframe src="{{ video.url }}" frameborder="0" allowfullscreen></iframe>
-            </div>
+<video src="{{ site.baseurl }}{{ video.url }}" controls playsinline muted loop></video>            </div>
             {% endfor %}
         </div>
     </div>
@@ -53,7 +52,7 @@ title: Home - Detailing Cars Apk
     <div class="container">
         <h2 class="section-title">What Our Clients Say</h2>
         <div class="reviews-grid">
-            {% for review in site.data.reviews %}
+            {% for review in site.data.review %}
             <div class="review-card">
                 <div class="stars">
                     {% for i in (1..review.stars) %}★{% endfor %}
